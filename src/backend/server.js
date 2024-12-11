@@ -1,3 +1,4 @@
+// File: server.js (Backend Setup)
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -26,41 +27,45 @@ const Employee = mongoose.model('Employee', employeeSchema);
 // API Routes
 app.post('/clock-in', async (req, res) => {
   const { employeeId } = req.body;
-  const employee = await Employee.findOneAndUpdate(
-    { employeeId },
-    { status: 'working' },
-    { new: true, upsert: true }
-  );
+  const employee = await Employee.findOne({ employeeId });
+  if (!employee) {
+    return res.status(404).json({ error: 'No employee matches this information' });
+  }
+  employee.status = 'working';
+  await employee.save();
   res.json(employee);
 });
 
 app.post('/clock-out', async (req, res) => {
   const { employeeId } = req.body;
-  const employee = await Employee.findOneAndUpdate(
-    { employeeId },
-    { status: 'day-off' },
-    { new: true }
-  );
+  const employee = await Employee.findOne({ employeeId });
+  if (!employee) {
+    return res.status(404).json({ error: 'No employee matches this information' });
+  }
+  employee.status = 'day-off';
+  await employee.save();
   res.json(employee);
 });
 
 app.post('/start-lunch', async (req, res) => {
   const { employeeId } = req.body;
-  const employee = await Employee.findOneAndUpdate(
-    { employeeId },
-    { status: 'lunch' },
-    { new: true }
-  );
+  const employee = await Employee.findOne({ employeeId });
+  if (!employee) {
+    return res.status(404).json({ error: 'No employee matches this information' });
+  }
+  employee.status = 'lunch';
+  await employee.save();
   res.json(employee);
 });
 
 app.post('/end-lunch', async (req, res) => {
   const { employeeId } = req.body;
-  const employee = await Employee.findOneAndUpdate(
-    { employeeId },
-    { status: 'working' },
-    { new: true }
-  );
+  const employee = await Employee.findOne({ employeeId });
+  if (!employee) {
+    return res.status(404).json({ error: 'No employee matches this information' });
+  }
+  employee.status = 'working';
+  await employee.save();
   res.json(employee);
 });
 

@@ -4,13 +4,19 @@ import './ClockInSystem.css';
 
 function ClockInSystem({ fetchEmployees }) {
   const [employeeId, setEmployeeId] = useState('');
+  const [error, setError] = useState('');
 
   const handleAction = async (action) => {
     try {
+      setError('');
       await axios.post(`http://localhost:4000/${action}`, { employeeId });
       fetchEmployees();
     } catch (error) {
-      console.error('Error:', error);
+      if (error.response && error.response.data.error) {
+        setError(error.response.data.error);
+      } else {
+        console.error('Error:', error);
+      }
     }
   };
 
@@ -23,6 +29,7 @@ function ClockInSystem({ fetchEmployees }) {
         value={employeeId}
         onChange={(e) => setEmployeeId(e.target.value)}
       />
+      {error && <p className="error">{error}</p>}
       <div className="buttons">
         <button onClick={() => handleAction('clock-in')}>Clock In</button>
         <button onClick={() => handleAction('clock-out')}>Clock Out</button>
