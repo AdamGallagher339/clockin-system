@@ -12,9 +12,14 @@ function App() {
   const [employees, setEmployees] = useState([]);
 
   const fetchEmployees = async () => {
-    const response = await axios.get('http://localhost:4000/employees');
-    setEmployees(response.data);
-  };
+    try {
+        // If you're using a proxy, use a relative URL
+        const response = await axios.get('/employees');
+        setEmployees(response.data);
+    } catch (error) {
+        console.error('Error fetching employees:', error);
+    }
+};
 
   return (
     <Router>
