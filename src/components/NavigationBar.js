@@ -10,8 +10,6 @@ const NavigationBar = () => {
             <Navbar.Brand href="/ClockIn">ClockIn System</Navbar.Brand>
             <Nav className="me-auto">
               <Nav.Link href="/Employees">Employees</Nav.Link>
-              <Nav.Link href="/MyProfile">MyProfile</Nav.Link>
-              <Nav.Link href="/Manager">Manager</Nav.Link>
             </Nav>
           </Container>
       </Navbar>
