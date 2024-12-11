@@ -5,6 +5,7 @@ import NavigationBar from './components/NavigationBar';
 import Footer from './components/Footer';
 import ClockInSystem from './components/ClockInSystem';
 import Employees from './components/Employees';
+import Manager from './components/Manager';
 import axios from 'axios';
 import React, { useState } from 'react';
 
@@ -13,13 +14,13 @@ function App() {
 
   const fetchEmployees = async () => {
     try {
-        // If you're using a proxy, use a relative URL
-        const response = await axios.get('/employees');
-        setEmployees(response.data);
+      const response = await axios.get('http://localhost:4000/employees');
+      console.log('Fetched Employees:', response.data); // Debugging log
+      setEmployees(response.data);
     } catch (error) {
-        console.error('Error fetching employees:', error);
+      console.error('Error fetching employees:', error);
     }
-};
+  };
 
   return (
     <Router>
@@ -28,6 +29,7 @@ function App() {
       <Routes>
         <Route path="/ClockIn" element={<ClockInSystem fetchEmployees={fetchEmployees}/>} />
         <Route path="/Employees" element={<Employees employees={employees} fetchEmployees={fetchEmployees}/>} />
+        <Route path="/Manager" element={<Manager fetchEmployees={fetchEmployees} />} />
       </Routes>
 
       <Footer />

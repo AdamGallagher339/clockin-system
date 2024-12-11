@@ -8,11 +8,11 @@ function Employees({ employees, fetchEmployees }) {
 
   return (
     <div className="employee-list">
-      <h2>Employee Status</h2>
+      <h2>List Of Employees</h2>
       <ul>
         {employees.map((employee) => (
           <li key={employee.employeeId}>
-            {employee.name || employee.employeeId} - {employee.status}
+            <class ID="enum">{employee.employeeId}</class> <class ID="ename">{employee.name}</class> <class ID="estatus">{employee.status}</class>
           </li>
         ))}
       </ul>

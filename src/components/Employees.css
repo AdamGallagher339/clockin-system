@@ -1,8 +1,22 @@
 .employee-list ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .employee-list li {
-    margin: 5px 0;
-  }
+  list-style-type: none;
+  padding: 0;
+}
+
+.employee-list li {
+  margin: 5px 0;
+}
+
+#enum{
+  color: black;
+  font-weight: lighter;
+}
+
+#ename{
+  color: black;
+  font-weight: normal;
+}
+
+#estatus{
+      font-weight: bold;
+}

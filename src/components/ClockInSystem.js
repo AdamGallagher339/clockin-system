@@ -7,7 +7,7 @@ function ClockInSystem({ fetchEmployees }) {
 
   const handleAction = async (action) => {
     try {
-      await axios.post(`http://localhost:5000/${action}`, { employeeId });
+      await axios.post(`http://localhost:4000/${action}`, { employeeId });
       fetchEmployees();
     } catch (error) {
       console.error('Error:', error);

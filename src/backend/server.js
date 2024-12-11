@@ -69,4 +69,17 @@ app.get('/employees', async (req, res) => {
   res.json(employees);
 });
 
+app.post('/add-employee', async (req, res) => {
+  const { employeeId, name } = req.body;
+  const newEmployee = new Employee({ employeeId, name });
+  await newEmployee.save();
+  res.json(newEmployee);
+});
+
+app.delete('/remove-employee', async (req, res) => {
+  const { employeeId } = req.body;
+  await Employee.findOneAndDelete({ employeeId });
+  res.json({ message: 'Employee removed' });
+});
+
 app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
