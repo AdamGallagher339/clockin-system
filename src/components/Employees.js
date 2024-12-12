@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import './Employees.css';
 
 function Employees({ employees, fetchEmployees }) {
+  // Fetch employees on component mount
   useEffect(() => {
     fetchEmployees();
   }, [fetchEmployees]);
@@ -10,7 +11,7 @@ function Employees({ employees, fetchEmployees }) {
     <div className="employee-list">
       <h2>Employee Status</h2>
       {employees.length === 0 ? (
-        <p ID="noEmp">No employees added</p>
+        <p ID="noEmp">No employees added</p>// Display message if no employees exist
       ) : (
         <ul>
           {employees.map((employee) => (

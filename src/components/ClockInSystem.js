@@ -7,12 +7,14 @@ function ClockInSystem({ fetchEmployees }) {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
 
+  
+  // Handle actions like clock-in, clock-out, start-lunch, and end-lunch
   const handleAction = async (action) => {
     try {
       setError('');
       setSuccess('');
       await axios.post(`http://localhost:4000/${action}`, { employeeId });
-      fetchEmployees();
+      fetchEmployees();// Update employee list
       setSuccess(`Successfully completed action: ${action.replace('-', ' ')}`);
     } catch (error) {
       if (error.response && error.response.data.error) {

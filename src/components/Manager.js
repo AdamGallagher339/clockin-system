@@ -8,9 +8,10 @@ function Manager({ fetchEmployees }) {
   const [success, setSuccess] = useState('');
   const [error, setError] = useState('');
 
+  // Add a new employee
   const addEmployee = async () => {
     try {
-      if (!employeeId || !name) {
+      if (!employeeId || !name) {// Ensure both fields are filled
         setError('Both Employee ID and Name must be provided');
         return;
       }
@@ -22,7 +23,7 @@ function Manager({ fetchEmployees }) {
       setName('');
       setSuccess('Employee added successfully');
     } catch (error) {
-      if (error.response && error.response.data.error) {
+      if (error.response && error.response.data.error) {// Handle duplicate ID error
         setError(error.response.data.error);
       } else {
         console.error('Error adding employee:', error);
@@ -30,9 +31,10 @@ function Manager({ fetchEmployees }) {
     }
   };
 
+  // Remove an employee
   const removeEmployee = async () => {
     try {
-      if (!employeeId) {
+      if (!employeeId) {// Ensure ID is provided
         setError('Employee ID must be provided to remove an employee');
         return;
       }
