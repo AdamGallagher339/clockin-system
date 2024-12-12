@@ -1,8 +1,20 @@
 .manager {
-    margin-top: 20px;
-  }
-  
-  .manager .buttons button {
-    margin: 5px;
-    padding: 10px 15px;
-  }
+  margin: 20px;
+  width: 100%;
+}
+
+.manager .buttons {
+  margin: 10px 0;
+}
+
+.manager .buttons button {
+  margin: 5px;
+}
+
+.error {
+  color: red;
+}
+
+.success {
+  color: green;
+}

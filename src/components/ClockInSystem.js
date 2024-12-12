@@ -5,12 +5,15 @@ import './ClockInSystem.css';
 function ClockInSystem({ fetchEmployees }) {
   const [employeeId, setEmployeeId] = useState('');
   const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
 
   const handleAction = async (action) => {
     try {
       setError('');
+      setSuccess('');
       await axios.post(`http://localhost:4000/${action}`, { employeeId });
       fetchEmployees();
+      setSuccess(`Successfully completed action: ${action.replace('-', ' ')}`);
     } catch (error) {
       if (error.response && error.response.data.error) {
         setError(error.response.data.error);
@@ -22,7 +25,7 @@ function ClockInSystem({ fetchEmployees }) {
 
   return (
     <div className="clock-in-system">
-      <h1>Clock In Machine</h1>
+      <h2>Clock In Machine</h2>
       <input
         type="text"
         placeholder="Enter Employee ID"
@@ -30,6 +33,7 @@ function ClockInSystem({ fetchEmployees }) {
         onChange={(e) => setEmployeeId(e.target.value)}
       />
       {error && <p className="error">{error}</p>}
+      {success && <p className="success">{success}</p>}
       <div className="buttons">
         <button onClick={() => handleAction('clock-in')}>Clock In</button>
         <button onClick={() => handleAction('clock-out')}>Clock Out</button>

@@ -1,8 +1,20 @@
 .clock-in-system {
-    margin-bottom: 20px;
-  }
-  
-  .buttons button {
-    margin: 5px;
-    padding: 10px 15px;
-  }
+  margin: 20px;
+  width: 100%;
+}
+
+.buttons {
+  margin: 10px 0;
+}
+
+.buttons button {
+  margin: 5px;
+}
+
+.error {
+  color: red;
+}
+
+.success {
+  color: green;
+}

@@ -3,58 +3,73 @@ import axios from 'axios';
 import './Manager.css';
 
 function Manager({ fetchEmployees }) {
-    const [employeeId, setEmployeeId] = useState('');
-    const [name, setName] = useState('');
-    const [error, setError] = useState('');
-  
-    const addEmployee = async () => {
+  const [employeeId, setEmployeeId] = useState('');
+  const [name, setName] = useState('');
+  const [success, setSuccess] = useState('');
+  const [error, setError] = useState('');
+
+  const addEmployee = async () => {
+    try {
       if (!employeeId || !name) {
-        setError('Employee ID and Name are required');
+        setError('Both Employee ID and Name must be provided');
         return;
       }
-      try {
-        setError('');
-        await axios.post('http://localhost:4000/add-employee', { employeeId, name });
-        fetchEmployees();
-        setEmployeeId('');
-        setName('');
-      } catch (error) {
+      setError('');
+      setSuccess('');
+      const response = await axios.post('http://localhost:4000/add-employee', { employeeId, name });
+      fetchEmployees();
+      setEmployeeId('');
+      setName('');
+      setSuccess('Employee added successfully');
+    } catch (error) {
+      if (error.response && error.response.data.error) {
+        setError(error.response.data.error);
+      } else {
         console.error('Error adding employee:', error);
       }
-    };
-  
-    const removeEmployee = async () => {
-      try {
-        await axios.delete('http://localhost:4000/remove-employee', { data: { employeeId } });
-        fetchEmployees();
-        setEmployeeId('');
-      } catch (error) {
-        console.error('Error removing employee:', error);
+    }
+  };
+
+  const removeEmployee = async () => {
+    try {
+      if (!employeeId) {
+        setError('Employee ID must be provided to remove an employee');
+        return;
       }
-    };
-  
-    return (
-      <div className="manager">
-        <h2>Manager Page</h2>
-        <input
-          type="text"
-          placeholder="Enter Employee ID"
-          value={employeeId}
-          onChange={(e) => setEmployeeId(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="Enter Employee Name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-        {error && <p className="error">{error}</p>}
-        <div className="buttons">
-          <button onClick={addEmployee}>Add Employee</button>
-          <button onClick={removeEmployee}>Remove Employee</button>
-        </div>
+      setError('');
+      setSuccess('');
+      await axios.delete('http://localhost:4000/remove-employee', { data: { employeeId } });
+      fetchEmployees();
+      setEmployeeId('');
+      setSuccess('Employee removed successfully');
+    } catch (error) {
+      console.error('Error removing employee:', error);
+    }
+  };
+
+  return (
+    <div className="manager">
+      <h2>Manager Page</h2>
+      <input
+        type="text"
+        placeholder="Enter Employee ID"
+        value={employeeId}
+        onChange={(e) => setEmployeeId(e.target.value)}
+      />
+      <input
+        type="text"
+        placeholder="Enter Employee Name"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+      />
+      {error && <p className="error">{error}</p>}
+      {success && <p className="success">{success}</p>}
+      <div className="buttons">
+        <button onClick={addEmployee}>Add Employee</button>
+        <button onClick={removeEmployee}>Remove Employee</button>
       </div>
-    );
-  }
-  
-  export default Manager;
+    </div>
+  );
+}
+
+export default Manager;

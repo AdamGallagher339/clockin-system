@@ -76,6 +76,13 @@ app.get('/employees', async (req, res) => {
 
 app.post('/add-employee', async (req, res) => {
   const { employeeId, name } = req.body;
+  if (!employeeId || !name) {
+    return res.status(400).json({ error: 'Both Employee ID and Name must be provided' });
+  }
+  const existingEmployee = await Employee.findOne({ employeeId });
+  if (existingEmployee) {
+    return res.status(400).json({ error: 'Employee ID must be unique' });
+  }
   const newEmployee = new Employee({ employeeId, name });
   await newEmployee.save();
   res.json(newEmployee);
