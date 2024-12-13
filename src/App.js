@@ -1,6 +1,6 @@
 import './App.css';
 
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate} from 'react-router-dom';
 import NavigationBar from './components/NavigationBar';
 import Footer from './components/Footer';
 import ClockInSystem from './components/ClockInSystem';
@@ -28,6 +28,7 @@ function App() {
       <NavigationBar />
 
       <Routes>
+        <Route path="/" element={<Navigate to="/ClockIn" />} />
         <Route path="/ClockIn" element={<ClockInSystem fetchEmployees={fetchEmployees}/>} />
         <Route path="/Employees" element={<Employees employees={employees} fetchEmployees={fetchEmployees}/>} />
         <Route path="/Manager" element={<Manager fetchEmployees={fetchEmployees} />} />
