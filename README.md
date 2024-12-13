@@ -1,70 +1,44 @@
-# Getting Started with Create React App
+## 
+## G00413950@atu.ie
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# How to run this React App
 
-## Available Scripts
+Firstly run the following commands.\
+`git clone https://github.com/AdamGallagher339/clockin-system.git`\
+`cd clockin-system`
 
-In the project directory, you can run:
+Next run.\
+`cd src`\
+`npm i` to install dependencies
 
-### `npm start`
+Once the installs have finished run.\
+`npm start` to run the node.js app.\
+and\
+`cd backend`\
+`nodemon server.js` to start the database connection.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## What to expect
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### ClockIn
+Once the app starts you will be redirected from "/" to the clock in systems main page.\
+Here employees would be able to update their own status using the buttons below the text box.\
+Employees must enter a valid EmployeeID to update a status.\
 
-### `npm test`
+### Employee
+Next you can navigate to the Employees page to view all Employees and their current status.\
+If there are no Employees a message indicating a lack of employees will appear in red.\
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Manager
+Finally you can navigate to the Manager page where you can add and remove employees from the database.\
+To Add an employee you must enter a unique EmployeeID and a name.\
+To Remove an employee you must enter a valid EmployeeID.\
 
-### `npm run build`
+# ERRORS / BUGS
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- If you cannot run the node.js app by typing npm start in your src file:\
+  Please attempt to run NPM I inside of the SRC frile one more time to ensure you have all dependencies installed.\
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- If employees are not being added / removed from the employees page:\
+  Please ensure you have the backend server running by typing nodemon server.js in the BACKEND file directory.\
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+If issues precist please feel free to contact me via G00413950@atu.ie for more assistance.
